@@ -1,0 +1,15 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-python:3
+
+# Configuration
+WORKDIR /usr/src/app
+ENV INITSYSTEM on
+
+# Install python dependencies
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+# Inssert main application
+COPY *.py ./
+
+# Start application
+CMD ["python", "app.py"]
